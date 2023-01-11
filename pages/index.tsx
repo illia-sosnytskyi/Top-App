@@ -1,13 +1,11 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import { Htag } from 'components';
 
 export default function Home(): JSX.Element {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Top App</title>
-        <link rel="icon" href='/favicon.ico' />
-      </Head>
+    <div>
+      <Htag tag='h1'>
+        Text
+      </Htag>
     </div>
   );
 }
