@@ -5,19 +5,18 @@ import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
 
 import { LayoutProps } from './Layout.props';
+import styles from './Layout.module.css';
 
 const Layout = ({ children }: LayoutProps) => {
   return(
-    <>
-      <Header />
-      <div>
-        <Sidebar />
-        <div>
+    <div className={styles.wrapper}>
+      <Header className={styles.header}/>
+        <Sidebar className={styles.sidebar}/>
+        <div className={styles.body}>
           {children}
         </div>
-      </div>
-      <Footer />
-    </>
+      <Footer className={styles.footer}/>
+    </div>
   );
 };
 
