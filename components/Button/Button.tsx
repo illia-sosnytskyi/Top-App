@@ -1,10 +1,12 @@
 import { ButtonProps } from './Button.props';
 import cn from 'classnames';
 import styles from './Button.module.css';
+import ArrowIcon from '../../public/arrow.svg';
 
 export const Button = ({
   appearance,
   children,
+  arrow = 'none',
   className,
   ...props
 }: ButtonProps ) => {
@@ -12,11 +14,20 @@ export const Button = ({
     <button
       className={cn(styles.button, className, {
         [styles.primary]: appearance === 'primary',
-        [styles.ghost]: appearance === 'ghost', 
+        [styles.ghost]: appearance === 'ghost',
       })}
       {...props}
     >
       {children}
+      {arrow !== 'none' && (
+        <span className={cn(styles.arrow, {
+          [styles.down]: arrow === 'down',
+          [styles.right]: arrow === 'right',
+        })}
+        >
+          <ArrowIcon />
+        </span>
+      )}
     </button>
   )
 };

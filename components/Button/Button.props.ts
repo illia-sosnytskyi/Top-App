@@ -9,4 +9,5 @@ export interface ButtonProps extends DetailedHTMLProps<
 > {
   appearance: 'primary' | 'ghost',
   children: ReactNode,
+  arrow?: 'right' | 'down' | 'none';
 }
