@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Button, Htag, Paragraph } from '../components';
 import { Tag } from '../components/Tag/Tag';
@@ -58,8 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
       menu,
       firstCategory,
     }
-  }
-
+  };
 }
 
 interface HomeProps extends Record<string, unknown> {
