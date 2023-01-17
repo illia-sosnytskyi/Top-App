@@ -1,4 +1,3 @@
-import { intervalToDuration } from "date-fns";
 import { TopLevelCategory } from './page.interface';
 
 export interface PageItem {

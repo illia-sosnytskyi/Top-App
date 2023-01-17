@@ -1,13 +1,12 @@
 import cn from 'classnames';
-import { format } from 'date-fns';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../context/app.context';
-import { FirstLevelMenuItem } from '../../interfaces/menu.interface';
+import { FirstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
 import styles from './Menu.module.css';
-import CoursesIcon from '../public/courses.svg';
-import ServisesIcon from '../public/servises.svg';
-import BooksIcon from '../public/books.svg';
-import GoodsIcon from '../public/goods.svg';
+import CoursesIcon from '../../public/courses.svg';
+import ServisesIcon from '../../public/services.svg';
+import BooksIcon from '../../public/books.svg';
+import GoodsIcon from '../../public/goods.svg';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 
 const firstLevelMenu: FirstLevelMenuItem[] = [
@@ -33,16 +32,16 @@ export const Menu = () => {
                 <span>{menu.name}</span>
               </div>
             </a>
-            { menu.id === firstCategory && buildSecondLevel() }
+            { menu.id === firstCategory && buildSecondLevel(menu) }
           </div>
         ))}
       </>
     );
   };
 
-  const buildSecondLevel = () => {
+  const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
     return (
-      <div>
+      <div className={styles.secondBlock}>
         {menu.map(m => (
           <div key={m._id.secondCategory}>
             <div className={styles.secondLevel}>
@@ -52,16 +51,28 @@ export const Menu = () => {
             <div className={cn(styles.secondLevelBlock, {
               [styles.secondLevelBlockOpened]: m.isOpened
             })}>
-              {buildThirdLevel}
+              {buildThirdLevel(m.pages, menuItem.route)}
             </div>
           </div>
         ))}
       </div>
-    )
+    );
   };
 
-  const buildThirdLevel = () => {
-    
+  const buildThirdLevel = (pages: PageItem[], route: string) => {
+    return (
+      pages.map(p => (
+        <a
+        key={p._id}
+        href={`/${route}/${p.alias}`}
+        className={cn(styles.thirdLevel, {
+          [styles.thirdLevelActive]: false,
+        })}
+        >
+          {p.category}
+        </a>
+      ))
+    );
   };
 
   return(
